@@ -14,15 +14,7 @@ class Settings extends Component {
   }
 
   render() {
-    return (
-      <SafeAreaView style={styles.containerStyles}>
-        <View style={styles.buttonContainer}>
-          <Icon.Button name="school" backgroundColor="#FFA500" size={40}>
-            <Text style={styles.buttonText}>Settings</Text>
-          </Icon.Button>
-        </View>
-      </SafeAreaView>
-    );
+    return <SafeAreaView style={styles.containerStyles}></SafeAreaView>;
   }
 }
 
