@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input, Header, Button} from '../common';
 
-class Tutoring extends Component {
+class Settings extends Component {
   static navigationOptions = {
-    title: 'Tutoring',
+    title: 'Settings',
   };
 
   onChangeUserName() {
@@ -15,10 +15,10 @@ class Tutoring extends Component {
 
   render() {
     return (
-      <SafeAreaView style={styles.authContainerStyles}>
+      <SafeAreaView style={styles.containerStyles}>
         <View style={styles.buttonContainer}>
-          <Icon.Button name="school" backgroundColor="#d64309" size={40}>
-            <Text style={styles.buttonText}>Tutoring</Text>
+          <Icon.Button name="school" backgroundColor="#FFA500" size={40}>
+            <Text style={styles.buttonText}>Settings</Text>
           </Icon.Button>
         </View>
       </SafeAreaView>
@@ -27,13 +27,14 @@ class Tutoring extends Component {
 }
 
 const styles = StyleSheet.create({
-  authContainerStyles: {
+  containerStyles: {
     flex: 1,
-    alignSelf: 'center',
-    width: '90%',
+    backgroundColor: '#E9E9EF',
   },
   buttonContainer: {
     paddingVertical: 20,
+    alignSelf: 'center',
+    width: '90%',
   },
   buttonText: {
     color: 'white',
@@ -41,15 +42,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     fontWeight: 'bold',
   },
-  authButtonStyle: {
-    backgroundColor: '#d64309',
-    height: 45,
-    justifyContent: 'center',
-  },
 });
 
 const mapStateToProps = state => {
   return {libraries: state.libraries};
 };
 
-export default connect(mapStateToProps)(Tutoring);
+export default connect(mapStateToProps)(Settings);

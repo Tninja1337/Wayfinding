@@ -5,7 +5,7 @@ import {Input, Header, Button} from '../common';
 
 class Auth extends Component {
   static navigationOptions = {
-    title: 'Bronco BEAM',
+    title: 'Wayfinding',
   };
 
   onSignInClicked() {
@@ -13,11 +13,11 @@ class Auth extends Component {
   }
   render() {
     return (
-      <SafeAreaView style={styles.authContainerStyles}>
+      <SafeAreaView style={styles.containerStyles}>
         <Button
           style={styles.authButtonStyle}
           onPress={this.onSignInClicked.bind(this)}>
-          Sign-in With Boise State
+          Super Secure Login for Wayfinding
         </Button>
       </SafeAreaView>
     );
@@ -25,13 +25,16 @@ class Auth extends Component {
 }
 
 const styles = StyleSheet.create({
-  authContainerStyles: {
+  containerStyles: {
     flex: 1,
+    backgroundColor: '#E9E9EF',
+    alignSelf: 'center',
     justifyContent: 'center',
+    width: '100%',
   },
 
   authButtonStyle: {
-    backgroundColor: '#d64309',
+    backgroundColor: '#FFA500',
     height: 45,
     justifyContent: 'center',
   },
