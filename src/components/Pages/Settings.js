@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input, Header, Button} from '../common';
 
-class Settings extends Component {
+class SettingsComp extends Component {
   static navigationOptions = {
     title: 'Settings',
   };
@@ -40,4 +40,5 @@ const mapStateToProps = state => {
   return {libraries: state.libraries};
 };
 
-export default connect(mapStateToProps)(Settings);
+const Settings = connect(mapStateToProps)(SettingsComp);
+export {Settings};

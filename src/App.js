@@ -1,5 +1,4 @@
 import React from 'react';
-import {View, SafeAreaView} from 'react-native';
 import {Provider} from 'react-redux';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -7,13 +6,14 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 import {createStore} from 'redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import reducers from './reducers';
-import {Header} from './components/common';
-import AuthLoadingScreen from './components/Pages/AuthLoadingScreen';
-import Auth from './components/Pages/Auth';
-import Directions from './components/Pages/Directions';
-import Explore from './components/Pages/Explore';
-import Settings from './components/Pages/Settings';
-import Help from './components/Pages/Help';
+import {
+  Auth,
+  AuthLoadingScreen,
+  Directions,
+  Explore,
+  Settings,
+  Help,
+} from './components/Pages';
 
 const HeaderBarConfig = {
   // Default config for header bar
@@ -24,7 +24,6 @@ const HeaderBarConfig = {
     headerTintColor: '#fff',
     headerTitleStyle: {
       fontWeight: 'bold',
-      fontSize: 25,
       color: '#F6F6F5',
     },
   },

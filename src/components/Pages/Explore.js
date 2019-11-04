@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {SafeAreaView, ScrollView, StyleSheet, Text} from 'react-native';
+import {SafeAreaView, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
-import {Card, CheckBox, Input, Divider, Button} from 'react-native-elements';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {FoodNotificationButton} from '../common';
 
-class Explore extends Component {
+class ExploreComp extends Component {
   static navigationOptions = {
     title: 'Explore',
   };
@@ -30,4 +27,5 @@ const mapStateToProps = state => {
   return {libraries: state.libraries};
 };
 
-export default connect(mapStateToProps)(Explore);
+const Explore = connect(mapStateToProps)(ExploreComp);
+export {Explore};

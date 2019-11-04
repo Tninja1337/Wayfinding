@@ -3,7 +3,7 @@ import {SafeAreaView, Text, StyleSheet} from 'react-native';
 import {connect} from 'react-redux';
 import {Input, Header, Button} from '../common';
 
-class Auth extends Component {
+class AuthComp extends Component {
   static navigationOptions = {
     title: 'Wayfinding',
   };
@@ -44,4 +44,5 @@ const mapStateToProps = state => {
   return {libraries: state.libraries};
 };
 
-export default connect(mapStateToProps)(Auth);
+const Auth = connect(mapStateToProps)(AuthComp);
+export {Auth};
