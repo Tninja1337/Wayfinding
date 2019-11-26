@@ -31,22 +31,23 @@ class Directions extends Component {
       {
         title: 'Boise State Student Union',
         leftIcon: 'clear',
-        rightIcon: 'heart',
+        rightIcon: 'heart-outline',
+
       },
       {
         title: "Albertson's Library",
         leftIcon: 'clear',
-        rightIcon: 'heart',
+        rightIcon: 'heart-outline',
       },
       {
         title: 'Location',
         leftIcon: 'clear',
-        rightIcon: 'heart',
+        rightIcon: 'heart-outline',
       },
       {
         title: 'Location',
         leftIcon: 'clear',
-        rightIcon: 'heart',
+        rightIcon: 'heart-outline',
       },
     ];
     return (
