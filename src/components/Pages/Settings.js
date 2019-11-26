@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input, Header, Button} from '../common';
 
-class FoodAdmin extends Component {
+class Settings extends Component {
   static navigationOptions = {
-    title: 'About',
+    title: 'Settings',
   };
 
   onChangeUserName() {
@@ -14,26 +14,19 @@ class FoodAdmin extends Component {
   }
 
   render() {
-    return (
-      <SafeAreaView style={styles.authContainerStyles}>
-        <View style={styles.buttonContainer}>
-          <Icon.Button name="school" backgroundColor="#d64309" size={40}>
-            <Text style={styles.buttonText}>Tutoring</Text>
-          </Icon.Button>
-        </View>
-      </SafeAreaView>
-    );
+    return <SafeAreaView style={styles.containerStyles}></SafeAreaView>;
   }
 }
 
 const styles = StyleSheet.create({
-  authContainerStyles: {
+  containerStyles: {
     flex: 1,
-    alignSelf: 'center',
-    width: '90%',
+    backgroundColor: '#E9E9EF',
   },
   buttonContainer: {
     paddingVertical: 20,
+    alignSelf: 'center',
+    width: '90%',
   },
   buttonText: {
     color: 'white',
@@ -41,15 +34,10 @@ const styles = StyleSheet.create({
     alignSelf: 'flex-end',
     fontWeight: 'bold',
   },
-  authButtonStyle: {
-    backgroundColor: '#d64309',
-    height: 45,
-    justifyContent: 'center',
-  },
 });
 
 const mapStateToProps = state => {
   return {libraries: state.libraries};
 };
 
-export default connect(mapStateToProps)(FoodAdmin);
+export default connect(mapStateToProps)(Settings);
