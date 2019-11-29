@@ -4,9 +4,13 @@ import {connect} from 'react-redux';
 import {Button, Card, SearchBar, ListItem} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
+
+
+
 class Directions extends Component {
   static navigationOptions = {
     title: 'Directions',
+
   };
 
   state = {
@@ -21,6 +25,16 @@ class Directions extends Component {
     this.props.navigation.navigate(pageName);
   }
 
+    addButtonPress() {
+        //adding bookmark code goes here
+        console.log("Add bookmark pressed")
+      
+  }
+    sortButtonPress() {
+        //sorting bookmark code goes here
+        console.log('Sort bookmark pressed')
+    }
+
   updateSearch = search => {
     this.setState({search});
   };
@@ -32,6 +46,7 @@ class Directions extends Component {
         title: 'Boise State Student Union',
         leftIcon: 'clear',
         rightIcon: 'heart-outline',
+
 
       },
       {
@@ -48,13 +63,14 @@ class Directions extends Component {
         title: 'Location',
         leftIcon: 'clear',
         rightIcon: 'heart-outline',
+        
       },
     ];
     return (
       <SafeAreaView style={styles.containerStyles}>
         <View style={styles.buttonContainer}>
-          <Button title="Add Bookmark" buttonStyle={styles.buttonStyle} />
-          <Button title="Sort Bookmarks" buttonStyle={styles.buttonStyle} />
+        <Button title="Add Bookmark" buttonStyle={styles.buttonStyle} onPress={this.addButtonPress}/>
+        <Button title="Sort Bookmarks" buttonStyle={styles.buttonStyle} onPress={this.sortButtonPress}/>
         </View>
         <Card>
           <SearchBar
@@ -69,7 +85,8 @@ class Directions extends Component {
               title={item.title}
               leftIcon={{type: 'material', name: item.leftIcon}}
               bottomDivider
-              rightIcon={{type: 'material-community', name: item.rightIcon}}
+              rightIcon={{ type: 'material-community', name: item.rightIcon}}
+             
             />
           ))}
         </Card>
