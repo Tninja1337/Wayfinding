@@ -21,36 +21,42 @@ class Directions extends Component {
                 leftIcon: 'close',
                 rightIcon: 'heart-outline',
                 id: '1',
+                favorite: false,
             },
             {
                 title: "Albertson's Library",
                 leftIcon: 'close',
                 rightIcon: 'heart-outline',
                 id: '2',
+                favorite: false,
             },
             {
                 title: 'Location',
                 leftIcon: 'close',
                 rightIcon: 'heart-outline',
                 id: '3',
+                favorite: false,
             },
             {
                 title: 'Location',
                 leftIcon: 'close',
                 rightIcon: 'heart-outline',
                 id: '4',
+                favorite: false,
             },
             {
                 title: 'Location',
                 leftIcon: 'close',
                 rightIcon: 'heart-outline',
                 id: '5',
+                favorite: false,
             },
             {
                 title: 'Location',
                 leftIcon: 'close',
                 rightIcon: 'heart-outline',
                 id: '6',
+                favorite: false,
             },
      
         ],
@@ -84,12 +90,24 @@ class Directions extends Component {
             }
         }
         this.setState({ dummyList: holderArray });
+
     }
 
-    favoriteIconPress() {
+    onFavoriteBookmarkPressed(id) {
+        var holderArray = this.state.dummyList;
+        
+            var obj = holderArray[id-1];
+        if (obj.rightIcon == 'heart-outline') {
+            obj.rightIcon = 'heart';
+            obj.favorite= true;
 
-
-        console.log('Favorite icon pressed')
+        }
+        else {
+            obj.rightIcon = 'heart-outline'
+            obj.favorite = false;
+        }
+        this.setState({ dummyList: holderArray });
+        
     }
 
 
@@ -135,7 +153,7 @@ class Directions extends Component {
                                         raised
                                         name={item.rightIcon}
                                         type="material-community"
-                                        onPress={() => console.log('hello')}
+                                        onPress={this.onFavoriteBookmarkPressed.bind(this, item.id)}
                                     />
                                 }
                             />
