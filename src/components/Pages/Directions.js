@@ -17,6 +17,8 @@ class Directions extends Component {
     search: '',
   };
 
+  
+
   onChangeUserName() {
     console.log('Changed Text');
   }
@@ -35,6 +37,19 @@ class Directions extends Component {
         console.log('Sort bookmark pressed')
     }
 
+    clearIconPress() {
+        
+        
+        console.log('Clear icon pressed')
+    }
+
+    favoriteIconPress() {
+
+        
+        console.log('Favorite icon pressed')
+    }
+
+
   updateSearch = search => {
     this.setState({search});
   };
@@ -44,24 +59,22 @@ class Directions extends Component {
     const list = [
       {
         title: 'Boise State Student Union',
-        leftIcon: 'clear',
+        leftIcon: 'close',
         rightIcon: 'heart-outline',
-
-
       },
       {
         title: "Albertson's Library",
-        leftIcon: 'clear',
+          leftIcon: 'close',
         rightIcon: 'heart-outline',
       },
       {
         title: 'Location',
-        leftIcon: 'clear',
+          leftIcon: 'close',
         rightIcon: 'heart-outline',
       },
       {
         title: 'Location',
-        leftIcon: 'clear',
+          leftIcon: 'close',
         rightIcon: 'heart-outline',
         
       },
@@ -83,12 +96,30 @@ class Directions extends Component {
             <ListItem
               key={i}
               title={item.title}
-              leftIcon={{type: 'material', name: item.leftIcon}}
+                  leftIcon=
+                  {
+                      <Icon
+                          size={26}
+                          rasied
+                          name={item.leftIcon}
+                          type="material-community"
+                          onPress={this.clearIconPress}
+                      />
+                  }
+
               bottomDivider
-              rightIcon={{ type: 'material-community', name: item.rightIcon}}
-             
-            />
-          ))}
+              rightIcon = {
+                  <Icon
+                          size={ 26}
+                          rasied
+                          name={ item.rightIcon }
+                          type="material-community"
+                          onPress = {this.favoriteIconPress}
+                />
+}
+ 
+/>
+))}
         </Card>
       </SafeAreaView>
     );
