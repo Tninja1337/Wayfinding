@@ -5,6 +5,8 @@ import { Button, Card, SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
+
+
 class DirectionsComp extends Component {
   static navigationOptions = {
     title: 'Directions',
@@ -12,6 +14,7 @@ class DirectionsComp extends Component {
 
     state = {
         search: '',
+        a: 1,
         dummyList: [
             {
                 title: 'Boise State Student Union',
@@ -80,20 +83,22 @@ class DirectionsComp extends Component {
 
     onDeleteBookmarkPressed(id) {
         var holderArray = this.state.dummyList;
+        var a = this.state.a;
         for (var i = 0; i < holderArray.length; i++) {
             var obj = holderArray[i];
             if (obj.id == id) {
                 holderArray.splice(i, 1);
+                a++;
             }
         }
         this.setState({ dummyList: holderArray });
-
+        this.setState({ a: a });
     }
 
     onFavoriteBookmarkPressed(id) {
         var holderArray = this.state.dummyList;
-        
-            var obj = holderArray[id-1];
+        var a = this.state.a;
+            var obj = holderArray[id-a];
         if (obj.rightIcon == 'heart-outline') {
             obj.rightIcon = 'heart';
             obj.favorite= true;
