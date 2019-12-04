@@ -5,13 +5,10 @@ import { Button, Card, SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 
-
-
-class Directions extends Component {
-    static navigationOptions = {
-        title: 'Directions',
-
-    };
+class DirectionsComp extends Component {
+  static navigationOptions = {
+    title: 'Directions',
+  };
 
     state = {
         search: '',
@@ -212,6 +209,7 @@ class Directions extends Component {
     }
 
 
+
 }
 
 const styles = StyleSheet.create({
@@ -249,4 +247,7 @@ const mapStateToProps = state => {
     return { libraries: state.libraries };
 };
 
-export default connect(mapStateToProps)(Directions);
+
+const Directions = connect(mapStateToProps)(DirectionsComp);
+export {Directions};
+

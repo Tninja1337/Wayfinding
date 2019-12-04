@@ -5,7 +5,7 @@ import {Card} from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Input, Header, Button} from '../common';
 
-class Help extends Component {
+class HelpComp extends Component {
   static navigationOptions = {
     title: 'Help',
   };
@@ -60,4 +60,5 @@ const mapStateToProps = state => {
   return {libraries: state.libraries};
 };
 
-export default connect(mapStateToProps)(Help);
+const Help = connect(mapStateToProps)(HelpComp);
+export {Help};
