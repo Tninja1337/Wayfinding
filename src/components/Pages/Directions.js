@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { SafeAreaView, View, Text, StyleSheet, ScrollView } from 'react-native';
+import { SafeAreaView, View, Text, StyleSheet, ScrollView, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { Button, Card, SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -15,6 +15,8 @@ class DirectionsComp extends Component {
     state = {
         search: '',
         a: 1,
+        sortSelect: 'Sort',
+        sorting: false,
         dummyList: [
             {
                 title: 'Boise State Student Union',
@@ -44,20 +46,7 @@ class DirectionsComp extends Component {
                 id: '4',
                 favorite: false,
             },
-            {
-                title: 'Location',
-                leftIcon: 'close',
-                rightIcon: 'heart-outline',
-                id: '5',
-                favorite: false,
-            },
-            {
-                title: 'Location',
-                leftIcon: 'close',
-                rightIcon: 'heart-outline',
-                id: '6',
-                favorite: false,
-            },
+     
      
         ],
     };
@@ -72,12 +61,12 @@ class DirectionsComp extends Component {
     }
 
     addButtonPress() {
-        //adding bookmark code goes here
+      
         console.log("Add bookmark pressed")
 
     }
     sortButtonPress() {
-        //sorting bookmark code goes here
+     
         console.log('Sort bookmark pressed')
     }
 
@@ -119,6 +108,37 @@ class DirectionsComp extends Component {
 
     render() {
         const { search } = this.state;
+        const sortLevel = [
+            {
+                label: 'Sort',
+                value: 'Sort',
+                description: 'Select an option to sort',
+            },
+            {
+                label: 'Alphabetically',
+                value: 'alphabetically ',
+                description: 'Sort alphabetically',
+            },
+            {
+                label: 'Distance',
+                value: 'distance',
+                description:
+                    'Sort by distance',
+            },
+            {
+                label: 'Most Visited',
+                value: 'visited',
+                description:
+                    'Sort by most often visited',
+            },
+            {
+                label: 'Most Recent',
+                value: 'recent',
+                description:
+                    'Sort by most recently visited',
+            },
+        ];
+
         return (
             <SafeAreaView style={styles.containerStyles}>
                 <View style={styles.buttonContainer}>
@@ -162,55 +182,14 @@ class DirectionsComp extends Component {
                         ))}
                     </ScrollView>
                 </Card>
+            
+
             </SafeAreaView>
             
 
         );
 
-        return (
-            <SafeAreaView style={styles.containerStyles}>
-                <View style={styles.buttonContainer}>
-                    <Button title="Add Bookmark" buttonStyle={styles.buttonStyle} onPress={this.addButtonPress} />
-                    <Button title="Sort Bookmarks" buttonStyle={styles.buttonStyle} onPress={this.sortButtonPress} />
-                </View>
-                <Card>
-                    <SearchBar
-                        lightTheme
-                        placeholder="Search for a bookmark..."
-                        onChangeText={this.updateSearch}
-                        value={search}
-                    />
-                    {list.map((item, i) => (
-                        <ListItem
-                            key={i}
-                            title={item.title}
-                            leftIcon=
-                            {
-                                <Icon
-                                    size={26}
-                                    rasied
-                                    name={item.leftIcon}
-                                    type="material-community"
-                                    onPress={this.clearIconPress}
-                                />
-                            }
-
-                            bottomDivider
-                            rightIcon={
-                                <Icon
-                                    size={26}
-                                    rasied
-                                    name={item.rightIcon}
-                                    type="material-community"
-                                    onPress={this.favoriteIconPress}
-                                />
-                            }
-
-                        />
-                    ))}
-                </Card>
-            </SafeAreaView>
-        );
+        
     }
 
 
