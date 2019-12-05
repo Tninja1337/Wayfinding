@@ -3,6 +3,7 @@ import { SafeAreaView, View, Text, StyleSheet, ScrollView, Picker } from 'react-
 import { connect } from 'react-redux';
 import { Button, Card, SearchBar, ListItem } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import DropdownMenu from 'react-native-dropdown-menu';
 
 
 
@@ -14,7 +15,6 @@ class DirectionsComp extends Component {
 
     state = {
         search: '',
-        a: 1,
         sortSelect: 'Sort',
         sorting: false,
         dummyList: [
@@ -72,34 +72,44 @@ class DirectionsComp extends Component {
 
     onDeleteBookmarkPressed(id) {
         var holderArray = this.state.dummyList;
-        var a = this.state.a;
+       
         for (var i = 0; i < holderArray.length; i++) {
             var obj = holderArray[i];
             if (obj.id == id) {
                 holderArray.splice(i, 1);
-                a++;
+                obj.favorite = false;
+             
             }
         }
         this.setState({ dummyList: holderArray });
-        this.setState({ a: a });
+     
     }
 
     onFavoriteBookmarkPressed(id) {
         var holderArray = this.state.dummyList;
-        var a = this.state.a;
-            var obj = holderArray[id-a];
-        if (obj.rightIcon == 'heart-outline') {
-            obj.rightIcon = 'heart';
-            obj.favorite= true;
+     
 
+        for (var i = 0; i < holderArray.length; i++) {
+            var obj = holderArray[i];
+            if (obj.id == id) {
+                if (obj.rightIcon == 'heart-outline') {
+                    obj.rightIcon = 'heart';
+                    obj.favorite = true;
+
+                }
+                else {
+                    obj.rightIcon = 'heart-outline'
+                    obj.favorite = false;
+                }
+
+                this.setState({ dummyList: holderArray });
+
+            }
         }
-        else {
-            obj.rightIcon = 'heart-outline'
-            obj.favorite = false;
-        }
-        this.setState({ dummyList: holderArray });
-        
     }
+        
+
+        
 
 
     updateSearch = search => {
@@ -138,13 +148,15 @@ class DirectionsComp extends Component {
                     'Sort by most recently visited',
             },
         ];
-
+        var data = [["Sort:", "Alphabetically", "Distance", "Most Visited", "Most Recent"]];
         return (
+            
             <SafeAreaView style={styles.containerStyles}>
                 <View style={styles.buttonContainer}>
                     <Button title="Add Bookmark" buttonStyle={styles.buttonStyle} />
                     <Button title="Sort Bookmarks" buttonStyle={styles.buttonStyle} />
                 </View>
+
                 <Card
                     containerStyle={{ height: '50%' }}
                     wrapperStyle={styles.bookMarkContainer}>
@@ -202,6 +214,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#E9E9EF',
         alignSelf: 'center',
         width: '100%',
+
     },
     buttonContainer: {
         flexDirection: 'row',
@@ -210,6 +223,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         width: '90%',
         height: '15%',
+ 
     },
     buttonStyle: {
         backgroundColor: '#FFA500',
@@ -225,6 +239,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-end',
         fontWeight: 'bold',
     },
+
 });
 
 const mapStateToProps = state => {
