@@ -1,5 +1,12 @@
 import React, {Component} from 'react';
-import {SafeAreaView, Text, StyleSheet, Switch, Picker} from 'react-native';
+import {
+  SafeAreaView,
+  ScrollView,
+  Text,
+  StyleSheet,
+  Switch,
+  Picker,
+} from 'react-native';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Card, CheckBox} from 'react-native-elements';
@@ -77,79 +84,85 @@ class SettingsComp extends Component {
   render() {
     return (
       <SafeAreaView style={styles.containerStyles}>
-        <Card
-          wrapperStyle={styles.switchCard}
-          titleStyle={styles.cardTitleStyle}>
-          <Icon
-            containerStyle={styles.iconStyle}
-            name="magnify"
-            type="material-community"
-            color="black"
-            size={20}
-          />
-          <Text style={styles.textStyle}>Listen for Beacons</Text>
-          <Switch
-            style={styles.switchStyle}
-            value={this.state.listenForBeacons}
-            onValueChange={() =>
-              this.setState({listenForBeacons: !this.state.listenForBeacons})
-            }
-          />
-        </Card>
-        <Card title="Assistance Customizaion">
-          <CheckBox
-            containerStyle={styles.checkboxStyle}
-            title="Audio Directions"
-            checked={this.state.audioDirections}
-            onPress={() =>
-              this.setState({audioDirections: !this.state.audioDirections})
-            }
-          />
-          <CheckBox
-            containerStyle={styles.checkboxStyle}
-            title="Give Audio Directions While Locked"
-            checked={this.state.audioDirectionsLocked}
-            onPress={() =>
-              this.setState({
-                audioDirectionsLocked: !this.state.audioDirectionsLocked,
-              })
-            }
-          />
-          <CheckBox
-            containerStyle={styles.checkboxStyle}
-            title="Vibration Alerts"
-            checked={this.state.vibrationAlerts}
-            onPress={() =>
-              this.setState({vibrationAlerts: !this.state.vibrationAlerts})
-            }
-          />
-          <CheckBox
-            containerStyle={styles.checkboxStyle}
-            title="Give Vibration Alerts While Locked"
-            checked={this.state.vibrationAlertsLocked}
-            onPress={() =>
-              this.setState({
-                vibrationAlertsLocked: !this.state.vibrationAlertsLocked,
-              })
-            }
-          />
-        </Card>
-        <Card title="Level of Detail">
-          <Picker
-            selectedValue={this.state.levelOfDetail}
-            onValueChange={(itemValue, itemIndex) =>
-              this.setState({levelOfDetail: itemValue})
-            }>
-            {this.detailOptions.map((prop, key) => {
-              return (
-                <Picker.Item key={key} label={prop.label} value={prop.value} />
-              );
-            })}
-          </Picker>
-          <Text style={styles.pickerDescription}>
-            {this.checkSelectedDetail()}
-          </Text>
-        </Card>
+        <ScrollView>
+          <Card
+            wrapperStyle={styles.switchCard}
+            titleStyle={styles.cardTitleStyle}>
+            <Icon
+              containerStyle={styles.iconStyle}
+              name="magnify"
+              type="material-community"
+              color="black"
+              size={20}
+            />
+            <Text style={styles.textStyle}>Listen for Beacons</Text>
+            <Switch
+              style={styles.switchStyle}
+              value={this.state.listenForBeacons}
+              onValueChange={() =>
+                this.setState({listenForBeacons: !this.state.listenForBeacons})
+              }
+            />
+          </Card>
+          <Card title="Assistance Customizaion">
+            <CheckBox
+              containerStyle={styles.checkboxStyle}
+              title="Audio Directions"
+              checked={this.state.audioDirections}
+              onPress={() =>
+                this.setState({audioDirections: !this.state.audioDirections})
+              }
+            />
+            <CheckBox
+              containerStyle={styles.checkboxStyle}
+              title="Give Audio Directions While Locked"
+              checked={this.state.audioDirectionsLocked}
+              onPress={() =>
+                this.setState({
+                  audioDirectionsLocked: !this.state.audioDirectionsLocked,
+                })
+              }
+            />
+            <CheckBox
+              containerStyle={styles.checkboxStyle}
+              title="Vibration Alerts"
+              checked={this.state.vibrationAlerts}
+              onPress={() =>
+                this.setState({vibrationAlerts: !this.state.vibrationAlerts})
+              }
+            />
+            <CheckBox
+              containerStyle={styles.checkboxStyle}
+              title="Give Vibration Alerts While Locked"
+              checked={this.state.vibrationAlertsLocked}
+              onPress={() =>
+                this.setState({
+                  vibrationAlertsLocked: !this.state.vibrationAlertsLocked,
+                })
+              }
+            />
+          </Card>
+          <Card title="Level of Detail">
+            <Picker
+              selectedValue={this.state.levelOfDetail}
+              onValueChange={(itemValue, itemIndex) =>
+                this.setState({levelOfDetail: itemValue})
+              }>
+              {this.detailOptions.map((prop, key) => {
+                return (
+                  <Picker.Item
+                    key={key}
+                    label={prop.label}
+                    value={prop.value}
+                  />
+                );
+              })}
+            </Picker>
+            <Text style={styles.pickerDescription}>
+              {this.checkSelectedDetail()}
+            </Text>
+          </Card>
+        </ScrollView>
       </SafeAreaView>
     );
   }
