@@ -10,7 +10,7 @@ import {
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Card, CheckBox} from 'react-native-elements';
-import {AsyncStorage} from '@react-native-community/async-storage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 class SettingsComp extends Component {
   static navigationOptions = {
@@ -48,27 +48,42 @@ class SettingsComp extends Component {
     },
   ];
 
-  // async componentDidMount() {
-  //   this.getSettings().then(value => {
-  //     console.log('promise from state: ', value);
-  //   });
-  // }
+  // Load settings from local storage when the view is mounted
+  async componentDidMount() {
+    await this.getSettings().then(value => {
+      console.log('populate settings from state: ', value);
+      this.setState(value);
+    });
+  }
 
-  // async componentDidUpdate() {
-  //   await this.saveSettings(this.state).then(res => {
-  //     console.log('saved something: ', res);
-  //   });
-  // }
+  // When something on the view changes, save settings again
+  async componentDidUpdate() {
+    await this.saveSettings(this.state).then(res => {
+      console.log('saved state');
+    });
+  }
 
-  // async saveSettings(value) {
-  //   const settings = JSON.stringify(value);
-  //   await AsyncStorage.setItem(this.storageKey, settings);
-  // }
+  // Save settings to local storage
+  async saveSettings(value) {
+    const settings = JSON.stringify(value);
+    try {
+      return await AsyncStorage.setItem(this.storageKey, settings);
+    } catch (e) {
+      console.error('unable to save settings', e);
+      return e;
+    }
+  }
 
-  // async getSettings() {
-  //   const settings = await AsyncStorage.getItem(this.storageKey);
-  //   return JSON.parse(settings);
-  // }
+  // Get settings from local storage
+  async getSettings() {
+    try {
+      const settings = await AsyncStorage.getItem(this.storageKey);
+      return JSON.parse(settings);
+    } catch (e) {
+      console.error('unable to read from local storage: ', e);
+      return e;
+    }
+  }
 
   // Check against selected detail value and return description
   checkSelectedDetail() {
