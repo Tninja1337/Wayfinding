@@ -1,21 +1,16 @@
 import React, {Component} from 'react';
-import {
-  SafeAreaView,
-  View,
-  Text,
-  StyleSheet,
-  Switch,
-  Picker,
-} from 'react-native';
+import {SafeAreaView, Text, StyleSheet, Switch, Picker} from 'react-native';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
-import {Input, Header, Button} from '../common';
-import {Card, CheckBox, ListItem} from 'react-native-elements';
+import {Card, CheckBox} from 'react-native-elements';
+import {AsyncStorage} from '@react-native-community/async-storage';
 
 class SettingsComp extends Component {
   static navigationOptions = {
     title: 'Settings',
   };
+
+  storageKey = 'wayfindingSettings';
 
   state = {
     listenForBeacons: false,
@@ -26,40 +21,60 @@ class SettingsComp extends Component {
     levelOfDetail: 'none',
   };
 
-  selectedDetailDescription = '';
+  // Options for the Level Of Detail picker
+  detailOptions = [
+    {
+      label: 'None',
+      value: 'none',
+      description: 'You will not receive any details.',
+    },
+    {
+      label: 'Reduced',
+      value: 'reduced',
+      description: 'You will receive all directions.',
+    },
+    {
+      label: 'Full',
+      value: 'full',
+      description:
+        'You will receive all directions, beacon callouts, nearby buildings, etc.',
+    },
+  ];
 
-  onChangeUserName() {
-    console.log('Changed Text');
+  // async componentDidMount() {
+  //   this.getSettings().then(value => {
+  //     console.log('promise from state: ', value);
+  //   });
+  // }
+
+  // async componentDidUpdate() {
+  //   await this.saveSettings(this.state).then(res => {
+  //     console.log('saved something: ', res);
+  //   });
+  // }
+
+  // async saveSettings(value) {
+  //   const settings = JSON.stringify(value);
+  //   await AsyncStorage.setItem(this.storageKey, settings);
+  // }
+
+  // async getSettings() {
+  //   const settings = await AsyncStorage.getItem(this.storageKey);
+  //   return JSON.parse(settings);
+  // }
+
+  // Check against selected detail value and return description
+  checkSelectedDetail() {
+    let selectedDetail = '';
+    for (var i = 0; i < this.detailOptions.length; i++) {
+      if (this.detailOptions[i].value === this.state.levelOfDetail) {
+        selectedDetail = this.detailOptions[i].description;
+      }
+    }
+    return selectedDetail;
   }
 
   render() {
-    // Options for the Level Of Detail picker
-    const detailOptions = [
-      {
-        label: 'None',
-        value: 'none',
-        description: 'You will not receive any details.',
-      },
-      {
-        label: 'Reduced',
-        value: 'reduced',
-        description: 'You will receive all directions.',
-      },
-      {
-        label: 'Full',
-        value: 'full',
-        description:
-          'You will receive all directions, beacon callouts, nearby buildings, etc.',
-      },
-    ];
-
-    // Check against selected detail value so we can update the description
-    for (var i = 0; i < detailOptions.length; i++) {
-      if (detailOptions[i].value === this.state.levelOfDetail) {
-        this.selectedDetailDescription = detailOptions[i].description;
-      }
-    }
-
     return (
       <SafeAreaView style={styles.containerStyles}>
         <Card
@@ -125,12 +140,14 @@ class SettingsComp extends Component {
             onValueChange={(itemValue, itemIndex) =>
               this.setState({levelOfDetail: itemValue})
             }>
-            {detailOptions.map((prop, key) => {
-              return <Picker.Item label={prop.label} value={prop.value} />;
+            {this.detailOptions.map((prop, key) => {
+              return (
+                <Picker.Item key={key} label={prop.label} value={prop.value} />
+              );
             })}
           </Picker>
           <Text style={styles.pickerDescription}>
-            {this.selectedDetailDescription}
+            {this.checkSelectedDetail()}
           </Text>
         </Card>
       </SafeAreaView>
