@@ -67,7 +67,7 @@ class DirectionsComp extends Component {
     var holderArray = this.state.dummyList;
     for (var i = 0; i < holderArray.length; i++) {
       var obj = holderArray[i];
-      if (obj.id == id) {
+      if (obj.id === id) {
         holderArray.splice(i, 1);
         obj.favorite = false;
       }
@@ -78,8 +78,8 @@ class DirectionsComp extends Component {
     var holderArray = this.state.dummyList;
     for (var i = 0; i < holderArray.length; i++) {
       var obj = holderArray[i];
-      if (obj.id == id) {
-        if (obj.rightIcon == 'heart-outline') {
+      if (obj.id === id) {
+        if (obj.rightIcon === 'heart-outline') {
           obj.rightIcon = 'heart';
           obj.favorite = true;
         } else {
@@ -141,7 +141,7 @@ class DirectionsComp extends Component {
             style={pickerSelectStyles}
             items={sortLevel}
             onValueChange={value => {
-              if (value == 'alphabetically') {
+              if (value === 'alphabetically') {
                 this.sortAlphabetically();
               }
               //call other sort options here in future
