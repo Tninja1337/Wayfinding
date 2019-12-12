@@ -140,6 +140,7 @@ class DirectionsComp extends Component {
               onPress={this.setModalVisible.bind(this, true)}
             />
             <RNPickerSelect
+              accessible={true}
               style={pickerSelectStyles}
               items={sortLevel}
               onValueChange={value => {
@@ -178,7 +179,7 @@ class DirectionsComp extends Component {
             wrapperStyle={styles.bookMarkContainer}>
             <SearchBar
               lightTheme
-              placeholder="Search for a bookmark..."
+              placeholder="Search for a bookmark"
               onChangeText={this.updateSearch}
               value={search}
             />
@@ -187,8 +188,12 @@ class DirectionsComp extends Component {
                 <ListItem
                   key={i}
                   title={item.title}
+                  accessibilityRole="text"
                   leftIcon={
                     <Icon
+                      accessible={true}
+                      accessibilityLabel={`Delete: ${item.title}`}
+                      accessibilityRole="button"
                       size={26}
                       raised
                       name={item.leftIcon}
@@ -199,6 +204,12 @@ class DirectionsComp extends Component {
                   bottomDivider
                   rightIcon={
                     <Icon
+                      accessibilityLabel={`Favorite ${item.title}`}
+                      accessibilityRole="switch"
+                      accessibilityState={{
+                        checked:
+                          item.rightIcon === 'heart-outline' ? false : true,
+                      }}
                       size={26}
                       raised
                       name={item.rightIcon}

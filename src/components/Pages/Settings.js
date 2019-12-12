@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {
   SafeAreaView,
+  TouchableWithoutFeedback,
   ScrollView,
   Text,
   StyleSheet,
@@ -97,31 +98,48 @@ class SettingsComp extends Component {
     return selectedDetail;
   }
 
+  accessibleChangeListenForBeacons() {
+    this.setState({listenForBeacons: !this.state.listenForBeacons});
+  }
+
   render() {
     return (
       <SafeAreaView style={styles.containerStyles}>
         <ScrollView>
+          <TouchableWithoutFeedback
+            onPress={this.accessibleChangeListenForBeacons.bind(this)}
+            accessible={true}
+            accessibilityLabel={`Listen for beacons, ${
+              this.state.listenForBeacons ? 'On' : 'Off'
+            }`}>
+            <Card
+              wrapperStyle={styles.switchCard}
+              titleStyle={styles.cardTitleStyle}>
+              <Icon
+                containerStyle={styles.iconStyle}
+                name="magnify"
+                type="material-community"
+                color="black"
+                size={20}
+              />
+              <Text style={styles.textStyle}>Listen for Beacons</Text>
+              <Switch
+                style={styles.switchStyle}
+                value={this.state.listenForBeacons}
+                onValueChange={() =>
+                  this.setState({
+                    listenForBeacons: !this.state.listenForBeacons,
+                  })
+                }
+              />
+            </Card>
+          </TouchableWithoutFeedback>
+
           <Card
-            wrapperStyle={styles.switchCard}
-            titleStyle={styles.cardTitleStyle}>
-            <Icon
-              containerStyle={styles.iconStyle}
-              name="magnify"
-              type="material-community"
-              color="black"
-              size={20}
-            />
-            <Text style={styles.textStyle}>Listen for Beacons</Text>
-            <Switch
-              style={styles.switchStyle}
-              value={this.state.listenForBeacons}
-              onValueChange={() =>
-                this.setState({listenForBeacons: !this.state.listenForBeacons})
-              }
-            />
-          </Card>
-          <Card title="Assistance Customizaion">
+            title="Assistance Customization"
+            accessibilityLabel="Assistance customization, 4 checkboxes below">
             <CheckBox
+              accessibilityState={{checked: this.state.audioDirections}}
               containerStyle={styles.checkboxStyle}
               title="Audio Directions"
               checked={this.state.audioDirections}
@@ -130,6 +148,7 @@ class SettingsComp extends Component {
               }
             />
             <CheckBox
+              accessibilityState={{checked: this.state.audioDirectionsLocked}}
               containerStyle={styles.checkboxStyle}
               title="Give Audio Directions While Locked"
               checked={this.state.audioDirectionsLocked}
@@ -140,6 +159,7 @@ class SettingsComp extends Component {
               }
             />
             <CheckBox
+              accessibilityState={{checked: this.state.vibrationAlerts}}
               containerStyle={styles.checkboxStyle}
               title="Vibration Alerts"
               checked={this.state.vibrationAlerts}
@@ -148,8 +168,9 @@ class SettingsComp extends Component {
               }
             />
             <CheckBox
-              containerStyle={styles.checkboxStyle}
               title="Give Vibration Alerts While Locked"
+              accessibilityState={{checked: this.state.vibrationAlertsLocked}}
+              containerStyle={styles.checkboxStyle}
               checked={this.state.vibrationAlertsLocked}
               onPress={() =>
                 this.setState({
@@ -160,6 +181,9 @@ class SettingsComp extends Component {
           </Card>
           <Card title="Level of Detail">
             <RNPickerSelect
+              disabled={false}
+              accessible={true}
+              accessibilityLabel="hello"
               style={pickerSelectStyles}
               items={this.detailOptions}
               onValueChange={(itemValue, itemIndex) =>

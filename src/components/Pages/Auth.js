@@ -5,7 +5,7 @@ import {Input, Header, Button} from '../common';
 
 class AuthComp extends Component {
   static navigationOptions = {
-    title: 'Wayfinding',
+    title: 'Theia',
   };
 
   onSignInClicked() {
@@ -17,7 +17,7 @@ class AuthComp extends Component {
         <Button
           style={styles.authButtonStyle}
           onPress={this.onSignInClicked.bind(this)}>
-          Super Secure Login for Wayfinding
+          Login to Theia
         </Button>
       </SafeAreaView>
     );

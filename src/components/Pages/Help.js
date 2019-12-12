@@ -21,14 +21,14 @@ class HelpComp extends Component {
           <Text>
             Welcome to our Digital Wayfinder. This app will help navigate you to
             your destination whether you are outdoors, or in one of our indoor
-            Beacon supported areas. At the bottom of the screen are our primary
-            page controls. The rightmost button is Help. It will let you know
-            what everything is and does on the current page. To the left of it
-            is Settings, which will assist you in setting up your profile and
-            notification preferences. The middle button is our indoor Beacon
-            system, and to the left of it is our GPS feature. The leftmost
-            button on the bottom bookmarks any saved locations to help you save
-            time and easily start your route anytime
+            Beacon supported areas. At the bottom of the screen are our four
+            primary page controls. The rightmost button is Help which you are
+            currently on. To the left of it is Settings, which will assist you
+            in setting up your profile and notification preferences. The
+            leftmost button on the bottom bookmarks any saved locations to help
+            you save time and easily start your route anytime. To the right of
+            it is the explore page which is where all of your navigation will
+            take place.
           </Text>
         </Card>
       </SafeAreaView>
