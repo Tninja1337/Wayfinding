@@ -135,6 +135,7 @@ class DirectionsComp extends Component {
           <View style={styles.buttonContainer}>
             <Button
               title="Add Bookmark"
+              containerStyle={styles.buttonStyle}
               buttonStyle={styles.buttonStyle}
               onPress={this.setModalVisible.bind(this, true)}
             />
@@ -226,13 +227,14 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     flexDirection: 'row',
-    justifyContent: 'space-around',
+    justifyContent: 'space-between',
     paddingVertical: 20,
     alignSelf: 'center',
-    width: '90%',
-    height: '15%',
+    flex: 1,
+    paddingHorizontal: 15,
   },
   buttonStyle: {
+    flex: 1,
     backgroundColor: '#FFA500',
     shadowColor: '#000',
     shadowOffset: {width: 0, height: 2},
@@ -263,6 +265,7 @@ const pickerSelectStyles = StyleSheet.create({
     borderRadius: 4,
     color: 'white',
     paddingRight: 30,
+    fontWeight: 'bold',
   },
   inputAndroid: {
     fontSize: 16,
@@ -271,14 +274,13 @@ const pickerSelectStyles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 2,
     elevation: 5,
-    paddingVertical: 12,
     paddingHorizontal: 10,
-    borderWidth: 1,
     borderColor: 'gray',
     backgroundColor: '#FFA500',
     borderRadius: 4,
     color: 'white',
-    paddingRight: 30,
+    fontWeight: 'bold',
+    marginLeft: 10,
   },
 });
 
