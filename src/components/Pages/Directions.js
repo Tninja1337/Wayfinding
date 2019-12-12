@@ -260,6 +260,24 @@ const pickerSelectStyles = StyleSheet.create({
         borderRadius: 4,
         color: 'white',
         paddingRight: 30,
+    },
+    inputAndroid:
+    {
+        fontSize: 16,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.5,
+        shadowRadius: 2,
+        elevation: 5,
+        paddingVertical: 12,
+        paddingHorizontal: 10,
+        borderWidth: 1,
+        borderColor: 'gray',
+        backgroundColor: '#FFA500',
+        borderRadius: 4,
+        color: 'white',
+        paddingRight: 30,
+
     }
 }
 )
