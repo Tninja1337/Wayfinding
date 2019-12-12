@@ -5,11 +5,12 @@ import {
   Text,
   StyleSheet,
   Switch,
-  Picker,
+  Platform,
 } from 'react-native';
 import {connect} from 'react-redux';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import {Card, CheckBox} from 'react-native-elements';
+import RNPickerSelect from 'react-native-picker-select';
 import AsyncStorage from '@react-native-community/async-storage';
 
 class SettingsComp extends Component {
@@ -158,21 +159,26 @@ class SettingsComp extends Component {
             />
           </Card>
           <Card title="Level of Detail">
-            <Picker
-              selectedValue={this.state.levelOfDetail}
+            <RNPickerSelect
+              style={pickerSelectStyles}
+              items={this.detailOptions}
               onValueChange={(itemValue, itemIndex) =>
                 this.setState({levelOfDetail: itemValue})
-              }>
-              {this.detailOptions.map((prop, key) => {
-                return (
-                  <Picker.Item
-                    key={key}
-                    label={prop.label}
-                    value={prop.value}
+              }
+              value={this.state.levelOfDetail}
+              useNativeAndroidPickerStyle={false}
+              Icon={() => {
+                return Platform.OS !== 'ios' ? (
+                  <Icon
+                    size={26}
+                    raised
+                    name="chevron-down"
+                    type="material-community"
                   />
-                );
-              })}
-            </Picker>
+                ) : null;
+              }}
+            />
+
             <Text style={styles.pickerDescription}>
               {this.checkSelectedDetail()}
             </Text>
@@ -227,6 +233,38 @@ const styles = StyleSheet.create({
     fontSize: 30,
     alignSelf: 'flex-end',
     fontWeight: 'bold',
+  },
+});
+const pickerSelectStyles = StyleSheet.create({
+  inputIOS: {
+    fontSize: 16,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 2},
+    shadowOpacity: 0.5,
+    shadowRadius: 2,
+    elevation: 5,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30,
+  },
+  inputAndroid: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 4,
+    color: 'black',
+    paddingRight: 30,
+  },
+  iconContainer: {
+    top: '50%',
+    right: 10,
+    transform: [{translateY: -15}],
   },
 });
 
